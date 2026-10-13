@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en" data-book-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="course-authoring-studio">
+
+<title>Physical Database Design and SQL Implementation — Hussein Younis</title>
+<!-- CSS Stack (in order):
+     1. {theme}.css — CSS variables (--r-*) remapped to book palette
+     2. master.css — General element styles (.note, .callout, .card, .timeline, etc.)
+     3. design-utilities.css — Generated utility classes from design-tokens.json
+     4. book.css — Book layout styles (.book-frame, .book-sidebar, .book-content, etc.)
+-->
+<link rel="stylesheet" href="default.css">
+<link rel="stylesheet" href="master.css">
+<link rel="stylesheet" href="design-utilities.css">
+<link rel="stylesheet" href="book.css">
+<link rel="stylesheet" href="glightbox/glightbox.min.css">
+<link rel="stylesheet" href="katex.min.css">
+<link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+<!-- Element-specific CSS -->
+<style>
+
+.chapter-extra { margin-bottom: 1.4rem; }
+.chapter-extra .chapter-overview { margin: 0 0 1.4rem; }
+.chapter-extra .chapter-overview p { margin: .6em 0; }
+.chapter-extra .chapter-overview h2, .chapter-extra .chapter-quote h2 {
+  font-family: var(--r-heading-font, inherit);
+  font-size: 1.08em;
+  font-weight: var(--r-heading-font-weight, 750);
+  letter-spacing: .01em;
+  text-transform: uppercase;
+  color: var(--book-accent, var(--r-heading-color, #4338ca));
+  margin: 1.5em 0 .5em;
+}
+.chapter-extra .chapter-overview h2 { margin-top: .4em; }
+.chapter-extra .callout { margin-top: .2em; }
+.chapter-extra .callout .callout-content ol { padding-left: 1.4em; margin: 0; list-style: decimal; list-style-position: outside; }
+.chapter-extra .callout .callout-content ol li { list-style: decimal; }
+.chapter-extra .callout .callout-content .learning-outcomes-lead { margin: .2em 0 .6em; }
+.chapter-extra .callout .callout-content li { margin: .25em 0; }
+.chapter-extra .callout .callout-content li p { margin: .15em 0; }
+.chapter-extra .chapter-quote blockquote { margin-top: .4em; }
+.chapter-extra .chapter-quote blockquote footer { display: block; color: var(--book-muted); }
+
+
+.ra-eq{border:1px solid #e2e8f0;border-radius:8px;padding:12px 14px;margin:1em 0;background:#fbfcfe;}.ra-eq-title{font-weight:700;font-size:.92em;color:#1e1b4b;margin-bottom:8px;}.ra-eq-math{overflow-x:auto;padding:4px 2px;}.ra-eq-math .katex-display{margin:.4em 0;}.ra-eq-inline{font-size:1em;}.ra-eq-code{margin-top:8px;}.ra-eq-code-label{font-size:.72em;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#6c757d;margin-bottom:4px;}.ra-eq-code-text{margin:0;padding:8px 10px;background:#0d1b2e;color:#c9d6f2;border-radius:5px;font-family:'SFMono-Regular',Consolas,monospace;font-size:.78em;line-height:1.55;overflow-x:auto;white-space:pre-wrap;word-break:break-word;}.ra-eq-exec{margin-top:12px;border-top:1px dashed #e2e8f0;padding-top:10px;}.relax-widget{border:1px solid #dee2e6;border-radius:8px;padding:12px 14px;margin:1em 0;background:#f8f9fa;font-family:inherit;}.relax-widget .relax-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px;}.relax-widget .relax-title{font-weight:700;font-size:1em;margin-right:auto;color:#1a2035;}.relax-widget .relax-run{background:linear-gradient(145deg,#4338ca,#6366f1);color:#fff;border:none;border-radius:6px;padding:6px 16px;cursor:pointer;font-size:.92em;font-weight:600;}.relax-widget .relax-run:hover{filter:brightness(1.08);}.relax-widget .relax-copy{background:#fff;color:#1e3a5f;border:1px solid #ced4da;border-radius:6px;padding:6px 12px;cursor:pointer;font-size:.9em;}.relax-widget .relax-copy:hover{border-color:#9db8dc;}.relax-widget .relax-schema{margin-bottom:10px;}.relax-widget .relax-schema-hidden{display:none;}.relax-widget .relax-schema-label{font-size:.8em;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#6c757d;margin-bottom:4px;}.relax-widget .relax-schema-hint{font-weight:400;text-transform:none;letter-spacing:0;}.relax-widget .relax-schema-text{margin:0;padding:8px 10px;background:#0d1b2e;color:#c9d6f2;border-radius:5px;font-family:'SFMono-Regular',Consolas,monospace;font-size:.88em;line-height:1.55;overflow-x:auto;white-space:pre;}.relax-widget .relax-query{margin-bottom:10px;}.relax-widget .relax-query-label{display:block;font-size:.8em;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#6c757d;margin-bottom:4px;}.relax-widget .relax-query-input{width:100%;box-sizing:border-box;font-family:'SFMono-Regular',Consolas,monospace;font-size:.95em;border:1px solid #ced4da;border-radius:5px;padding:7px 9px;resize:vertical;background:#fff;}.relax-widget .relax-query-input:focus{outline:none;border-color:#6366f1;box-shadow:0 0 0 2px rgba(99,102,241,.18);}.relax-widget .relax-result{margin-top:4px;}.relax-widget .relax-status{font-size:.9em;color:#6c757d;margin-top:4px;border-left:3px solid #4338ca;padding-left:6px;display:none;}.relax-widget .relax-status.relax-ok{display:block;border-left-color:#1a5c3a;}.relax-widget .relax-status.relax-error{display:block;color:#c0392b;border-left-color:#e57373;}.relax-widget .relax-section-title{font-size:.8em;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#6c757d;margin:10px 0 4px;}.relax-widget .relax-formula-html{background:#0d1b2e;color:#e8eaf6;border-radius:6px;padding:10px 12px;font-size:1em;overflow-x:auto;line-height:1.8;}.relax-widget .relax-formula-html .math{font-style:italic;font-weight:700;color:#82b1ff;font-size:1.05em;}.relax-widget .relax-formula-html sub{font-size:.78em;color:#b2ebf2;}.relax-widget .relax-table-wrap{overflow:auto;border:1px solid #dee2e6;border-radius:5px;max-width:100%;max-height:min(60vh,26rem);}.relax-widget .relax-table{border-collapse:collapse;font-size:.95em;width:100%;}.relax-widget .relax-table thead{position:sticky;top:0;z-index:1;}.relax-widget .relax-table thead th{position:sticky;top:0;z-index:1;}.relax-widget .relax-table th{background:#1e3a5f;color:#fff;padding:7px 11px;text-align:left;white-space:nowrap;}.relax-widget .relax-table th small{display:block;font-weight:400;opacity:.75;font-size:.82em;}.relax-widget .relax-table td{padding:6px 11px;border-bottom:1px solid #f0f0f0;font-family:monospace;white-space:nowrap;}.relax-widget .relax-table tbody tr:hover{background:#f0f4fa;}.relax-widget .relax-null{color:#999;font-style:italic;opacity:.7;}.relax-widget .relax-none{color:#6c757d;font-size:.95em;}.relax-widget .relax-tree-root{overflow:auto;max-height:340px;padding:8px 4px 12px;border:1px solid #dee2e6;border-radius:5px;background:#fafbff;}.relax-widget .relax-tree-root>ul{list-style:none;margin:0;padding:12px 0 0;position:relative;display:flex;gap:0;}.relax-widget .relax-tree-root>ul::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:2px;height:12px;background:#8ab0d8;}.relax-widget .relax-tree-root ul{list-style:none;padding:0;margin:0;display:flex;justify-content:center;position:relative;}.relax-widget .relax-tree-root ul ul{padding:0;}.relax-widget .relax-tree-root li{list-style:none;padding:0 8px;display:flex;flex-direction:column;align-items:center;position:relative;}.relax-widget .relax-tree-root li::before,.relax-widget .relax-tree-root li::after{content:'';position:absolute;top:0;right:50%;border-top:2px solid #8ab0d8;width:50%;height:0;}.relax-widget .relax-tree-root li::after{right:auto;left:50%;}.relax-widget .relax-tree-root li:first-child::before,.relax-widget .relax-tree-root li:last-child::after{border-top:none;}.relax-widget .relax-tree-root li:only-child::before,.relax-widget .relax-tree-root li:only-child::after{display:none;}.relax-widget .relax-tree-root li>.relax-node-wrap::before{content:'';display:block;width:2px;height:12px;background:#8ab0d8;margin:0 auto;}.relax-widget .relax-node-wrap{display:flex;flex-direction:column;align-items:center;position:relative;}.relax-widget .relax-node-box{background:linear-gradient(145deg,#2c5282,#1e3a5f);color:#fff;padding:5px 12px;border-radius:6px;font-family:monospace;font-size:.88em;white-space:nowrap;box-shadow:0 2px 5px rgba(0,0,0,.2);text-align:center;min-width:70px;}.relax-widget .relax-node-box.relax-leaf{background:linear-gradient(145deg,#2d8555,#1a5c3a);}.relax-widget .relax-node-rows{display:block;font-family:'Segoe UI',sans-serif;font-size:.8em;font-weight:400;opacity:.8;margin-top:2px;}.relax-node-popup{display:none;position:fixed;z-index:99999;background:#1a2035;color:#e8eaf6;border:1px solid #3a4a7a;border-radius:7px;padding:10px 14px;min-width:230px;max-width:360px;box-shadow:0 8px 28px rgba(0,0,0,.55);font-family:'SFMono-Regular',Consolas,monospace;font-size:.85em;line-height:1.7;white-space:nowrap;pointer-events:none;}.relax-node-popup .relax-pop-title{font-weight:700;font-size:.9em;color:#90caf9;margin-bottom:5px;white-space:nowrap;}.relax-node-popup .relax-pop-col{display:flex;justify-content:space-between;gap:16px;}.relax-node-popup .relax-pop-col-name{color:#e0e0e0;}.relax-node-popup .relax-pop-col-type{color:#80cbc4;opacity:.85;}.relax-modal-backdrop{position:fixed;inset:0;background:rgba(9,14,28,.55);z-index:9999;display:none;align-items:center;justify-content:center;padding:24px;}.relax-modal-backdrop.relax-open{display:flex;}.relax-modal{background:#fff;border-radius:10px;max-width:860px;width:100%;max-height:86vh;display:flex;flex-direction:column;box-shadow:0 12px 40px rgba(0,0,0,.35);overflow:hidden;}.relax-modal-head{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #e9ecef;background:#f8f9fa;}.relax-modal-title{font-weight:700;font-size:.95em;color:#1e3a5f;margin-right:auto;}.relax-modal-close{background:transparent;border:none;font-size:1.1em;line-height:1;color:#6c757d;cursor:pointer;padding:2px 6px;border-radius:4px;}.relax-modal-close:hover{background:#e9ecef;color:#212529;}.relax-modal-body{overflow:auto;padding:14px;min-height:0;}.relax-modal-body .relax-diagram-img{max-width:100%;height:auto;display:block;margin:0 auto;border:1px solid #dee2e6;border-radius:6px;}.relax-modal-body .relax-diagram-none{color:#6c757d;font-size:.85em;text-align:center;padding:20px 0;}.relax-modal-caption{font-size:.85em;color:#6c757d;margin-top:8px;text-align:center;}.relax-modal-schema{margin-top:12px;}.relax-modal-schema-label{font-size:.8em;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#6c757d;margin-bottom:4px;}.relax-modal-schema-text{margin:0;padding:10px;background:#0d1b2e;color:#c9d6f2;border-radius:5px;font-family:'SFMono-Regular',Consolas,monospace;font-size:.88em;line-height:1.55;white-space:pre;overflow:auto;max-height:min(45vh,15rem);}.relax-modal-foot{display:flex;justify-content:flex-end;gap:8px;padding:10px 14px;border-top:1px solid #e9ecef;background:#f8f9fa;}.relax-modal-copy{background:linear-gradient(145deg,#4338ca,#6366f1);color:#fff;border:none;border-radius:6px;padding:8px 19px;cursor:pointer;font-size:.92em;font-weight:600;}.relax-modal-copy:hover{filter:brightness(1.08);}.relax-widget .relax-symbols{display:flex;flex-wrap:wrap;gap:8px;padding:8px;margin-bottom:10px;border:1px solid #e5e7eb;border-radius:8px;background:#f8f9fa;}.relax-widget .rx-sym-group{display:flex;align-items:center;gap:2px;padding:2px 6px;border:1px solid #e5e7eb;border-radius:6px;background:#fff;}.relax-widget .rx-sym-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#94a3b8;padding:0 4px;white-space:nowrap;}.relax-widget .rx-sym-btn{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:28px;padding:0 6px;border:1px solid transparent;border-radius:5px;background:transparent;font-family:'SFMono-Regular',Consolas,monospace;font-size:15px;line-height:1;color:#334155;cursor:pointer;transition:background .12s ease,border-color .12s ease,color .12s ease;}.relax-widget .rx-sym-btn:hover{background:#eef2ff;border-color:#c7d2fe;color:#4f46e5;}.relax-widget .rx-sym-btn:active{background:#e0e7ff;}.relax-widget .relax-er-btn{display:inline-flex;align-items:center;gap:6px;background:#fff;color:#1e3a5f;border:1px solid #9db8dc;border-radius:6px;padding:7px 13px;cursor:pointer;font-size:.9em;font-weight:600;}.relax-widget .relax-er-btn:hover{border-color:#5a8ac2;background:#f4f8ff;}
+
+div.columns.cols-1, div.columns.cols-2, div.columns.cols-3, div.columns.cols-4, div.columns.cols-5, div.columns.cols-6 { display: grid; align-items: stretch; justify-items: stretch; }
+div.columns.cols-1 { grid-template-columns: repeat(1, 1fr); }
+div.columns.cols-2 { grid-template-columns: repeat(2, 1fr); }
+div.columns.cols-3 { grid-template-columns: repeat(3, 1fr); }
+div.columns.cols-4 { grid-template-columns: repeat(4, 1fr); }
+div.columns.cols-5 { grid-template-columns: repeat(5, 1fr); }
+div.columns.cols-6 { grid-template-columns: repeat(6, 1fr); }
+div.columns > .column { display: block; width: auto; min-width: 0; }
+div.columns.col-gap-0 { column-gap: 0; }
+div.columns.col-gap-1 { column-gap: 0.5em; }
+div.columns.col-gap-2 { column-gap: 1em; }
+div.columns.col-gap-3 { column-gap: 1.5em; }
+div.columns.col-gap-4 { column-gap: 2em; }
+div.columns.col-justify-start { justify-items: start; }
+div.columns.col-justify-center { justify-items: center; }
+div.columns.col-justify-end { justify-items: end; }
+div.columns.col-justify-stretch { justify-items: stretch; }
+div.columns.col-align-start { align-items: start; }
+div.columns.col-align-center { align-items: center; }
+div.columns.col-align-end { align-items: end; }
+div.columns.col-align-stretch { align-items: stretch; }
+</style>
+</head>
+<body class="book book-theme-default" data-book>
+<div class="book-frame" id="top">
+
+<header class="book-topbar">
+  <button type="button" class="book-toggle" id="book-toggle" aria-label="Toggle sidebar">
+    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+  </button>
+  
+  <button type="button" class="book-theme-toggle" id="book-theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+  <i class="fa-solid fa-moon book-theme-icon-moon"></i>
+  <i class="fa-solid fa-sun book-theme-icon-sun"></i>
+</button>
+</header>
+  <div class="book-body">
+
+<aside class="book-sidebar" id="book-sidebar">
+  <div class="book-sidebar-header">
+    <a href="./index.html" class="book-brand">
+      <span class="book-brand-title">Physical Database Design and SQL Implementation</span>
+      <span class="book-brand-subtitle">A Comprehensive Course: Relational Databases &amp; NoSQL — Chapter5</span>
+    </a>
+    
+    <label class="book-search">
+      <span class="book-search-field">
+        <i class="fa-solid fa-magnifying-glass book-search-icon" aria-hidden="true"></i>
+        <input type="search" id="book-search-input" placeholder="Search…" autocomplete="off">
+      </span>
+      <span class="book-search-count" id="book-search-count"></span>
+    </label>
+  </div>
+  <nav class="book-nav-container">
+    <ul class="book-nav"><li class="book-nav-chapter" data-chapter="Chapter1">
+      <a class="book-nav-chapter-link" href="./appendix-Chapter1.html#ch-ch-mtrfwt2e-86mb9e">
+        <span class="book-nav-chapter-num">Chapter1</span>
+        <span class="book-nav-chapter-name">Introduction to Database Systems</span>
+      </a>
+    </li><li class="book-nav-chapter" data-chapter="Chapter2">
+      <a class="book-nav-chapter-link" href="./appendix-Chapter2.html#ch-ch-mtv65tez-nfzuh9">
+        <span class="book-nav-chapter-num">Chapter2</span>
+        <span class="book-nav-chapter-name">Entity‐Relationship (ER) Model</span>
+      </a>
+    </li><li class="book-nav-chapter" data-chapter="Chapter3">
+      <a class="book-nav-chapter-link" href="./appendix-Chapter3.html#ch-ch-munettpq-7elyv0">
+        <span class="book-nav-chapter-num">Chapter3</span>
+        <span class="book-nav-chapter-name">The Relational Data Model</span>
+      </a>
+    </li><li class="book-nav-chapter" data-chapter="Chapter4">
+      <a class="book-nav-chapter-link" href="./appendix-Chapter4.html#ch-ch-mucsrfmz-f1gnoc">
+        <span class="book-nav-chapter-num">Chapter4</span>
+        <span class="book-nav-chapter-name">Relational Algebra</span>
+      </a>
+    </li><li class="book-nav-chapter" data-chapter="Chapter5">
+      <a class="book-nav-chapter-link" href="#pg-muuzqebd-nn0gn8">
+        <span class="book-nav-chapter-num">Chapter5</span>
+        <span class="book-nav-chapter-name">Physical Database Design and SQL Implementation</span>
+      </a>
+    </li><li class="book-nav-chapter" data-chapter="Chapter6">
+      <a class="book-nav-chapter-link" href="./appendix-Chapter6.html#ch-ch-muvdvxmy-zko3ed">
+        <span class="book-nav-chapter-num">Chapter6</span>
+        <span class="book-nav-chapter-name">Normalization and Functional Dependencies</span>
+      </a>
+    </li></ul>
+  </nav>
+</aside>
+    <div class="book-main">
+      <div class="book-layout">
+        <main class="book-content">
+
+<article id="pg-muuzqebd-nn0gn8" class="book-page " data-page-type="page">
+<section class="book-chapter-intro"><h1 id="pg-muuzqebd-nn0gn8--physical-database-design-and-sql-implementation" class="book-chapter-title"><span class="book-heading-number">Chapter5</span>Physical Database Design and SQL Implementation</h1></section>
+
+</article>
+        <nav class="book-site-pager"><a class="book-site-pager-prev" href="./appendix-Chapter4.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Relational Algebra</a><a class="book-site-pager-next" href="./appendix-Chapter6.html">Normalization and Functional Dependencies <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></nav>
+</main>
+
+<aside class="book-toc-rail" id="book-toc-rail">
+  <div class="book-toc-rail-inner">
+    <span class="book-toc-rail-label">On this page</span>
+    <p class="book-toc-empty">No headings yet.</p>
+  </div>
+</aside>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="book-back-to-top" id="book-back-to-top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+  </button>
+</div>
+
+<script>
+window.BOOK_DATA = {"sidebar":true,"toc":true,"tocDepth":4,"searchEnabled":true,"themeToggle":true,"pageOnly":false,"date":null,"headings":[],"pages":[{"id":"pg-muuzqebd-nn0gn8","title":"Physical Database Design and SQL Implementation","section":null,"subsection":null,"chapterLabel":"Chapter5"}],"searchIndex":[{"pageId":"pg-muuzqebd-nn0gn8","title":"Physical Database Design and SQL Implementation","text":"Chapter5 Physical Database Design and SQL Implementation"}]};
+</script>
+<script src="glightbox/glightbox.min.js"></script>
+<script src="book.js"></script>
+
+
+</body>
+</html>
