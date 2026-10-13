@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Course Syllabus — Introduction to Database Systems</title>
+<style>
+  :root {
+    --accent: #2f5496;
+    --border: #cbd5e1;
+    --muted: #64748b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Calibri, "Segoe UI", Arial, sans-serif;
+    font-size: 12pt;
+    line-height: 1.45;
+    color: #1e293b;
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 18mm 16mm;
+    background: #fff;
+  }
+  h1 { font-size: 24pt; font-weight: normal; color: var(--accent); margin: 0 0 2mm; }
+  .doc-kicker { text-transform: uppercase; letter-spacing: .12em; font-size: 9pt; color: var(--muted); margin-bottom: 8mm; }
+  h2 {
+    font-size: 14pt; color: var(--accent); font-weight: normal;
+    border-bottom: 1px solid var(--border); padding-bottom: 1.5mm;
+    margin: 10mm 0 3mm;
+  }
+  table { width: 100%; border-collapse: collapse; margin: 2mm 0 4mm; }
+  th, td { border: 1px solid var(--border); padding: 2mm 3mm; vertical-align: top; text-align: left; }
+  th { background: #f1f5f9; font-weight: bold; }
+  .info td:nth-child(odd) { width: 32%; background: #f8fafc; font-weight: 600; }
+  .center { text-align: center; }
+  .matrix td.check, .matrix th { text-align: center; }
+  .matrix td.rowhead { font-weight: 600; width: 20%; }
+  ol, ul { margin: 2mm 0 4mm; padding-left: 7mm; }
+  li { margin-bottom: 1.5mm; }
+  .note {
+    background: #fffbeb; border: 1px solid #fcd34d; border-radius: 2mm;
+    padding: 2.5mm 3.5mm; margin: 2mm 0 4mm;
+  }
+  .linkbox {
+    background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 2mm;
+    padding: 2.5mm 3.5mm; margin: 3mm 0;
+  }
+  a { color: var(--accent); word-break: break-all; }
+  .clo-item { margin-bottom: 3mm; }
+  .clo-title { font-weight: bold; color: var(--accent); }
+  .print-btn {
+    position: fixed; top: 6mm; right: 6mm;
+    background: var(--accent); color: #fff; border: none; border-radius: 2mm;
+    padding: 3mm 5mm; font-size: 11pt; cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  }
+  @page { size: A4; margin: 0; }
+  @media print {
+    .print-btn { display: none; }
+    body { padding: 14mm 16mm; }
+  }
+</style>
+</head>
+<body>
+<button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+
+<h1>Course Syllabus</h1>
+<div class="doc-kicker">230213230 · Fall 2026/2027</div>
+<h1 style="font-size:18pt;margin-top:0;">Introduction to Database Systems</h1>
+
+<h2>COURSE INFORMATION</h2>
+<table class="info">
+  <tr><td>Course Name</td><td>Introduction to Database Systems</td><td>Credit hours</td><td>3</td></tr>
+  <tr><td>Section</td><td>1,2,3</td><td>Obligatory/Elective</td><td>Department Obligatory</td></tr>
+  <tr><td>Code</td><td>230213230</td><td>Pre-Requisite</td><td></td></tr>
+  <tr><td>Department</td><td>CSE</td><td>Semester</td><td>Fall 2026/2027</td></tr>
+  <tr><td>Time &amp; Location</td><td colspan="3"></td></tr>
+</table>
+
+<h2>TEACHING STAFF</h2>
+<table class="info">
+  <tr><td>Name</td><td>Mr. Hussein Younis</td><td>Office</td><td></td></tr>
+  <tr><td>Email</td><td><a href="Hussein.younis@aaup.edu">Hussein.younis@aaup.edu</a></td><td>Office Hours</td><td></td></tr>
+</table>
+
+<h2>ACADEMIC REGULATIONS</h2>
+<h3 style="font-size:12pt;color:#334155;margin:4mm 0 1.5mm;">Attendance Policy</h3>
+<p>Students are required to attend all classes and to arrive on time. If a student is absent more than 25% of the time, he/she will receive a &quot;W&quot; in the course. Students will not be allowed in the classroom if they are more than 10 minutes late and will be considered absent in such a case.</p>
+<h3 style="font-size:12pt;color:#334155;margin:4mm 0 1.5mm;">Absence from Exam and Handling Assignments on Time</h3>
+<ol><li>Failure in attending a course exam other than the final exam will result in a zero mark unless the student provides an official acceptable excuse to the instructor, who may approve a makeup exam.</li><li>Failure in attending the final exam will result in a zero mark unless the student provides an official acceptable excuse approved according to university regulations.</li><li>A late policy will be applied if students fail to submit their assignments and projects on time.</li></ol>
+<h3 style="font-size:12pt;color:#334155;margin:4mm 0 1.5mm;">Academic Honesty</h3>
+<p>Students are expected to be honest. Cheating is prohibited, which may include but is not limited to the following:</p>
+<ul><li>Copying from other students.</li><li>Using materials not authorized by the department.</li><li>Collaborating with other students during an exam without permission.</li><li>Stealing or buying the content of an exam or assignments.</li><li>Plagiarism (stealing ideas and work of others and presenting it as yours).</li><li>Using mobiles during exams.</li></ul>
+<div class="note"><strong>NOTE:</strong> Please read and understand AAUP policies and regulations.</div>
+
+<h2>GRADING SYSTEM</h2>
+<table>
+  <tr><th>Grade</th><th>Points</th></tr>
+  <tr><td class="center">A</td><td class="center">4.00</td></tr><tr><td class="center">A-</td><td class="center">3.67</td></tr><tr><td class="center">B+</td><td class="center">3.33</td></tr><tr><td class="center">B</td><td class="center">3.00</td></tr><tr><td class="center">B-</td><td class="center">2.67</td></tr><tr><td class="center">C+</td><td class="center">2.33</td></tr><tr><td class="center">C</td><td class="center">2.00</td></tr><tr><td class="center">C-</td><td class="center">1.67</td></tr><tr><td class="center">D+</td><td class="center">1.33</td></tr><tr><td class="center">D</td><td class="center">1.00</td></tr><tr><td class="center">F</td><td class="center">0.35</td></tr>
+</table>
+
+<h2>TEACHING STRATEGIES AND METHODS</h2>
+<p>Student-centered and active learning strategies will be utilized to accomplish the outlined student learning outcomes:</p>
+<ul>
+  <li><strong>Lectures:</strong> Interactive sessions involving concept explanations, live SQL demonstrations, case studies, and discussions on real-world database architectures.</li><li><strong>Readings:</strong> Students are responsible for reading textbook chapters before class to prepare questions and engage in informed discussions.</li><li><strong>In-Class Activities:</strong>  Hands-on schema design, normalization exercises, and collaborative query optimization challenges.</li><li><strong>Outside-Class Activities:</strong> Individual SQL programming assignments and a comprehensive group Database Design Project.</li>
+</ul>
+
+<h2>COURSE DETAILS</h2>
+<h3 style="font-size:12pt;color:#334155;margin:4mm 0 1.5mm;">Course Description</h3>
+<p>This course provides a comprehensive introduction to the principles, design, and implementation of modern database management systems (DBMS). It begins with foundational concepts of data modeling, including Entity-Relationship (ER) diagrams, and progresses to the relational model, relational algebra, and Structured Query Language (SQL). The course covers database design theory, including functional dependencies and normalization (up to BCNF and 4NF). Advanced topics include transaction management, concurrency control, recovery systems, and an introduction to NoSQL and distributed databases. Through hands-on programming assignments and a capstone design project, students will gain the practical skills to design, implement, and optimize robust database systems for real-world engineering applications.</p>
+<h3 style="font-size:12pt;color:#334155;margin:4mm 0 1.5mm;">Course Learning Outcomes (CLOs)</h3>
+<p>Upon the completion of the course students will be able to achieve the following learning outcomes:</p>
+<ol>
+  <li class="clo-item"><span class="clo-title">CLO1 – :</span> Explain the role of a DBMS and distinguish it from file-based data management.</li><li class="clo-item"><span class="clo-title">CLO2 – :</span> Model real-world requirements using ER and EER diagrams.</li><li class="clo-item"><span class="clo-title">CLO3 – :</span> Convert conceptual designs into relational schemas with keys and constraints.</li><li class="clo-item"><span class="clo-title">CLO4 – :</span> Write SQL queries for data definition, manipulation, and retrieval.</li><li class="clo-item"><span class="clo-title">CLO5 – :</span> Apply normalization theory to reduce redundancy and improve consistency.</li><li class="clo-item"><span class="clo-title">CLO6 – :</span> Describe storage structures, indexing, and query processing techniques.</li><li class="clo-item"><span class="clo-title">CLO7 – :</span> Explain transaction management, concurrency control, and recovery concepts.</li><li class="clo-item"><span class="clo-title">CLO8 – :</span> Compare relational and NoSQL database approaches for different application needs.</li>
+</ol>
+
+
+<h3 style="font-size:12pt;color:#334155;margin:4mm 0 1.5mm;">Mapping of CLOs to SOs</h3>
+<table class="matrix">
+  <tr><th></th><th>SO1</th><th>SO2</th><th>SO3</th><th>SO4</th><th>SO5</th><th>SO6</th><th>SO7</th></tr>
+  <tr><td class="rowhead">CLO1</td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td></tr><tr><td class="rowhead">CLO2</td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td></tr><tr><td class="rowhead">CLO3</td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td></tr><tr><td class="rowhead">CLO4</td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td></tr><tr><td class="rowhead">CLO5</td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td></tr><tr><td class="rowhead">CLO6</td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td></tr><tr><td class="rowhead">CLO7</td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td></tr><tr><td class="rowhead">CLO8</td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td><td class="check"></td></tr>
+</table>
+
+<h2>ASSESSMENTS</h2>
+<table>
+  <tr><th>Assessment Tool</th><th style="width:15%;">Weight %</th><th>Description</th></tr>
+  <tr><td>Quizzes</td><td class="center">10</td><td>Short, periodic assessments covering reading materials, relational algebra, and normalization concepts.</td></tr><tr><td>Assignments</td><td class="center">10</td><td>Practical homework and lab tasks focusing on SQL query writing, schema design, and basic NoSQL operations.</td></tr><tr><td>Midterm Exam</td><td class="center">30</td><td>Comprehensive written exam covering Parts I through V (Weeks 1–10: Foundations, Modeling, Relational Theory, SQL, and Normalization).</td></tr><tr><td>Final Exam</td><td class="center">50</td><td>Comprehensive written exam with emphasis on Parts VI through VIII (Storage, Transactions, Concurrency, and NoSQL), plus cumulative concepts.</td></tr>
+  <tr><th>Total</th><th class="center">100</th><th></th></tr>
+</table>
+
+<h2>COURSE SCHEDULE</h2>
+<table>
+  <tr><th style="width:8%;">WK #</th><th>Topic</th><th>Material</th><th style="width:15%;">CLO</th></tr>
+  <tr><td class="center">1</td><td>Introduction to DBMS &amp; Architecture</td><td>Ch. 1: Database concepts, file systems vs. DBMS, system architecture</td><td class="center"></td></tr>
+</table>
+
+<h2>REFERENCES</h2>
+<h3 style="font-size:12pt;color:#334155;">Primary Textbooks</h3><ul><li><strong>Fundamentals of Database Systems, 7th Ed. – Elmasri and Navathe (Pearson, 2016)</strong></li><li><strong>Database System Concepts, 7th Ed. – Silberschatz, Korth, and Sudarshan (McGraw-Hill, 2020)</strong></li></ul>
+<h3 style="font-size:12pt;color:#334155;">Reference Books</h3><ul><li><strong>Database Management Systems, 3rd Ed. – Ramakrishnan and Gehrke (McGraw-Hill).</strong></li><li><strong>Designing Data-Intensive Applications – Martin Kleppmann (O'Reilly, 2017) (Excellent for modern/NoSQL context).</strong></li></ul>
+
+
+</body>
+</html>
